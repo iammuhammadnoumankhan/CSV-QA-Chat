@@ -13,13 +13,13 @@ load_dotenv()
 
 # Initialize OpenAI
 openai.api_key = os.getenv("OPENAI_API_KEY")
+csv_path = os.getenv("CSV_FILE")
 
 # Initialize processor
 from data_processor import DataProcessor
 processor = DataProcessor()
 
 # Initialize LangChain
-csv_path = "https://docs.google.com/spreadsheets/d/1o0lO6-UfWQAWYz5V7L10X4ooigj44mTvTH3JmqFGB0A/export?format=csv"
 # csv_path = 'data/courses.csv'
 vectorstore = processor.create_vector_store(csv_path) #'data/courses.csv'
 qa_chain = ConversationalRetrievalChain.from_llm(

@@ -10,7 +10,8 @@ def initialize_system():
     load_dotenv()
     
     # Check for required environment variables
-    required_vars = ['OPENAI_API_KEY']
+    required_vars = ['OPENAI_API_KEY', 'CSV_FILE']
+    csv_path = os.getenv("CSV_FILE")
     missing_vars = [var for var in required_vars if not os.getenv(var)]
     if missing_vars:
         raise EnvironmentError(f"Missing required environment variables: {', '.join(missing_vars)}")
@@ -20,7 +21,7 @@ def initialize_system():
     
     # Process CSV if it exists
     # csv_path = "data/courses.csv"
-    csv_path = "https://docs.google.com/spreadsheets/d/1o0lO6-UfWQAWYz5V7L10X4ooigj44mTvTH3JmqFGB0A/export?format=csv"
+    
     # if os.path.exists(csv_path):
     #     print("Converting CSV to SQLite database...")
     #     processor.csv_to_sqlite(csv_path)
